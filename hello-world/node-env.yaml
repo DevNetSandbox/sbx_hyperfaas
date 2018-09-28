@@ -1,0 +1,9 @@
+apiVersion: hyperfaas.io/v1
+kind: Environment
+metadata:
+  name: node-env
+spec:
+  poolsize: 1
+  runtime:
+    image: cfnorg/node-env
+  version: 1

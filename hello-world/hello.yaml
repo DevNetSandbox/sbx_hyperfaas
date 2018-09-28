@@ -1,0 +1,34 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: hello-name
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: node-env
+    namespace: admin
+  package:
+    packageref:
+      name: hello-name-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: hello-name-package
+  namespace: admin
+spec:
+  source:
+    type: github
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "hello-world/hello.js"
+      ref: master
+environment:
+  name: node-env
+  namespace: admin
