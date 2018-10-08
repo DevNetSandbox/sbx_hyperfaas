@@ -1,7 +1,7 @@
 apiVersion: hyperfaas.io/v1
 kind: Function
 metadata:
-  name: hello-name
+  name: hello
   namespace: admin
 spec:
   InvokeStrategy:
@@ -12,14 +12,14 @@ spec:
     namespace: admin
   package:
     packageref:
-      name: hello-name-package
+      name: hello-package
       namespace: admin
 
 ---
 apiVersion: hyperfaas.io/v1
 kind: Package
 metadata:
-  name: hello-name-package
+  name: hello-package
   namespace: admin
 spec:
   source:

@@ -2,6 +2,7 @@ apiVersion: hyperfaas.io/v1
 kind: Environment
 metadata:
   name: node-env
+  namespace: admin
 spec:
   poolsize: 1
   runtime:
