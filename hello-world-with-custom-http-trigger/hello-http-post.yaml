@@ -1,0 +1,11 @@
+apiVersion: hyperfaas.io/v1
+kind: HTTPTrigger
+metadata:
+  name: hello-post
+  namespace: admin
+spec:
+  functionref:
+    type: name
+    name: hello
+  method: POST
+  relativeurl: /custom-http-hello

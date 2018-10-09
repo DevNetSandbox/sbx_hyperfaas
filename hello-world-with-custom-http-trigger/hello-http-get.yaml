@@ -1,0 +1,11 @@
+apiVersion: hyperfaas.io/v1
+kind: HTTPTrigger
+metadata:
+  name: hello-get
+  namespace: admin
+spec:
+  functionref:
+    type: name
+    name: hello
+  method: GET
+  relativeurl: /custom-http-hello
