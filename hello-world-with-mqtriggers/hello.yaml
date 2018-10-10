@@ -27,7 +27,7 @@ spec:
     github:
       owner: DevNetSandbox
       repo: sbx_hyperfaas
-      path: "hello-world-with-kafka-trigger/hello.js"
+      path: "hello-world-with-mqtriggers/hello.js"
       ref: master
 environment:
   name: node-env

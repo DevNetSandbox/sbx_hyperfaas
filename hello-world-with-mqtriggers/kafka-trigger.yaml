@@ -1,0 +1,13 @@
+apiVersion: hyperfaas.io/v1
+kind: MessageQueueTrigger
+metadata:
+  name: hello-kafka
+  namespace: admin
+spec:
+  functionref:
+    type: name
+    name: hello
+  messageQueueType: kafka
+  topic: hello-in
+  respTopic: hello-out
+  contentType: "application/json"
