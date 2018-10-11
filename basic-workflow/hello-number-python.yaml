@@ -1,0 +1,35 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: hello-number-python
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: python-env
+    namespace: admin
+  package:
+    functionName: "hello-number.main"
+    packageref:
+      name: hello-number-python-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: hello-number-python-package
+  namespace: admin
+spec:
+  source:
+    type: github
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "basic-workflow/hello-number.py"
+      ref: master
+  environment:
+    name: python-env
+  namespace: admin

@@ -1,0 +1,13 @@
+apiVersion: hyperfaas.io/v1
+kind: Environment
+metadata:
+  name: python-env
+  namespace: admin
+spec:
+  builder:
+    command: build
+    image: cfnorg/python-build-env
+  poolsize: 1
+  runtime:
+    image: cfnorg/python-env
+  version: 2
