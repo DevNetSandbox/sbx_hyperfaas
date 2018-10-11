@@ -1,0 +1,32 @@
+apiVersion: hyperfaas.io/v1alpha1
+kind: Workflow
+metadata:
+  name: hello-number
+  namespace: admin
+spec:
+  environment:
+    name: workflow-env
+    namespace: admin
+  wfDefinition:
+    description: Generate a random number between 0 and 100 and if number >50 - run nodejs function, otherwise - run python funcion 
+    output: HelloNumber
+    tasks:
+      GenerateNumber:
+        run: generate-number
+    
+      HelloNumber:
+        run: if
+        inputs:
+          if: "{$.Tasks.GenerateNumber.Output.number > 50}"
+          then:
+            run: hello-number-nodejs
+            inputs:
+              default:
+                number: "{$.Tasks.GenerateNumber.Output.number}"
+          else:
+            run: hello-number-python
+            inputs:
+              default:
+                number: "{$.Tasks.GenerateNumber.Output.number}"
+        requires:
+        - GenerateNumber
