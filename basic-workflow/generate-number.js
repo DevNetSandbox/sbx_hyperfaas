@@ -1,5 +1,5 @@
-module.exports = async function () {
-    var random_number = Math.floor(Math.random());//* 100);
+module.exports = async function (context) {
+    let random_number = Math.floor(Math.random() * 101);
 
     return {
         status: 200,
