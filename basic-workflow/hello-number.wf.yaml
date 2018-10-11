@@ -8,12 +8,12 @@ spec:
     name: workflow-env
     namespace: admin
   wfDefinition:
-    description: Generate a random number between 0 and 100 and if number >50 - run nodejs function, otherwise - run python funcion 
+    description: Generate a random number between 0 and 100 and if number >50 - run nodejs function, otherwise - run python function 
     output: HelloNumber
     tasks:
       GenerateNumber:
         run: generate-number
-    
+
       HelloNumber:
         run: if
         inputs:
