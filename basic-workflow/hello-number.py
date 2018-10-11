@@ -1,2 +1,8 @@
+from flask import request
+
+
 def main():
-    return "Hello World from Python environment!\n"
+    if request.data:
+        data = request.get_json()  # returns valid json
+        number = data["number"]
+    return "Hello, %s!" % number
