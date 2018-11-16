@@ -28,3 +28,5 @@ It saves stakeholders’ costs by reducing CapEx and OpEx and providing resource
 ## Getting started with Cisco HyperFaaS Sandbox
 
 To start working with the Cisco HyperFaaS Sandbox, follow the instructions provided in [Learning Lab](http://learninglabs.cisco.com/).
+
+You can find Cisco HyperFaaS Sandbox in [devnetsandbox.cisco.com](https://devnetsandbox.cisco.com), under "Cloud" category, or by following this [link](https://devnetsandbox.cisco.com/RM/Diagram/Index/7c47d2ef-5636-4d34-9888-042291fdef55?diagramType=Topology) directly.
