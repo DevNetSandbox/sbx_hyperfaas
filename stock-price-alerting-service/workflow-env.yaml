@@ -1,0 +1,15 @@
+apiVersion: hyperfaas.io/v1
+kind: Environment
+metadata:
+  name: workflow-env
+  namespace: admin
+spec:
+  allowedFunctionsPerContainer: infinite
+  builder:
+    command: defaultBuild
+    image: 'cfnorg/workflow-build-env'
+  poolsize: 1
+  runtime:
+    image: 'cfnorg/workflow-env'
+  version: 2
+  workflow: true
