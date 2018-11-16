@@ -4,6 +4,7 @@ const rp = require('request-promise-native');
 
 module.exports = async function (context) {
     var body = context.request.body;
+    console.log(`body = ${body}`);
     var symbol = body.symbol;
 
     console.log(`Got symbol: ${symbol}`);
