@@ -1,0 +1,59 @@
+apiVersion: hyperfaas.io/v1alpha1
+kind: Workflow
+metadata:
+  name: stock
+  namespace: admin
+spec:
+  environment:
+    name: workflow-env
+    namespace: admin
+  wfDefinition:
+    description: Post a new stock price to Webex Teams and store it to MongoDB 
+    output: CreateResult
+    tasks:
+      FetchStockPrice:
+        run: fetch-stock-price
+        inputs:
+          default:
+            symbol: "{$.Invocation.Inputs.default.symbol}"
+
+      CheckPriceThreshold:
+        run: if
+        inputs:
+          if: "{$.Tasks.FetchStockPrice.Output.price > 40}"
+          then:
+            run: post-to-webex-teams
+            inputs:
+              default:
+                message: "{$.Invocation.Inputs.default.symbol + ' stock price is ' + $.Tasks.FetchStockPrice.Output.price}"
+                token: "{$.Invocation.Inputs.default.token}"
+                room: "{$.Invocation.Inputs.default.room}"
+                user: "{$.Invocation.Inputs.default.user}"
+        requires:
+        - FetchStockPrice
+
+      StoreToMongo:
+        run: store-to-mongo
+        inputs:
+          default:
+            mongodb_host: "mongo-db.hyperfaas.svc.cluster.local"
+            mongodb_port: "27017"
+            mongodb_database: "stock-alerting-service"
+            mongodb_collection: "stock"
+            symbol: "{$.Invocation.Inputs.default.symbol}"
+            price: "{$.Tasks.FetchStockPrice.Output.price}"
+        requires:
+        - CheckPriceThreshold
+
+      CreateResult:
+        run: compose
+        inputs:
+          message: "{($.Tasks.CheckPriceThreshold.Output && $.Tasks.CheckPriceThreshold.Output.message) || \ 
+          $.Invocation.Inputs.default.symbol + ':' + $.Tasks.FetchStockPrice.Output.price + '. Stock price is less than 40, did not send any messages!'}"
+        requires:
+        - StoreToMongo
+
+
+
+
+

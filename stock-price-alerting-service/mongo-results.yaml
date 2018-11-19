@@ -1,0 +1,37 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: mongo-results
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: python-env
+    namespace: admin
+  package:
+    functionName: "mongo_results.main"
+    packageref:
+      name: mongo-results-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: mongo-results-package
+  namespace: admin
+spec:
+  buildcmd: ./build.sh
+  source:
+    type: github
+    build: true
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "stock-price-alerting-service/mongo-functions/"
+      ref: master
+  environment:
+    name: python-env
+    namespace: admin

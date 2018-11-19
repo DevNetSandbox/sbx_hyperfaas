@@ -1,0 +1,37 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: store-to-mongo
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: python-env
+    namespace: admin
+  package:
+    functionName: "store_to_mongo.main"
+    packageref:
+      name: store-to-mongo-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: store-to-mongo-package
+  namespace: admin
+spec:
+  buildcmd: ./build.sh
+  source:
+    type: github
+    build: true
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "stock-price-alerting-service/mongo-functions/"
+      ref: master
+  environment:
+    name: python-env
+    namespace: admin

@@ -1,0 +1,14 @@
+apiVersion: hyperfaas.io/v1
+kind: MessageQueueTrigger
+metadata:
+  name: stock-kafka
+  namespace: admin
+spec:
+  wfref:
+    name: stock
+  functionref:
+    type: name
+  messageQueueType: kafka
+  topic: stock-in
+  respTopic: stock-out
+  contentType: "application/json"
