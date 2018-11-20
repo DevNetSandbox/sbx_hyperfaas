@@ -1,0 +1,13 @@
+apiVersion: hyperfaas.io/v1
+kind: Environment
+metadata:
+  name: go-env
+  namespace: admin
+spec:
+  builder:
+    command: build
+    image: cfnorg/golang-build-env:1.9.2
+  poolsize: 1
+  runtime:
+    image: cfnorg/go-env
+  version: 2
