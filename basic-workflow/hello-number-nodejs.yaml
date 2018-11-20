@@ -29,6 +29,6 @@ spec:
       repo: sbx_hyperfaas
       path: "basic-workflow/hello-number.js"
       ref: master
-environment:
-  name: node-env
-  namespace: admin
+  environment:
+    name: node-env
+    namespace: admin

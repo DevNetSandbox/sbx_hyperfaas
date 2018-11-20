@@ -34,7 +34,7 @@ spec:
                 body: "Hello, "+ name +"!\n"
             };
         }
-type: literal
-environment:
-  name: node-env
-  namespace: admin
+  type: literal
+  environment:
+    name: node-env
+    namespace: admin

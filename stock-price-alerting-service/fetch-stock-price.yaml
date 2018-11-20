@@ -29,6 +29,6 @@ spec:
       repo: sbx_hyperfaas
       path: "stock-price-alerting-service/fetch-stock-price.js"
       ref: master
-environment:
-  name: node-env
-  namespace: admin
+  environment:
+    name: node-env
+    namespace: admin

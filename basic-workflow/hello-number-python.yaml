@@ -32,4 +32,4 @@ spec:
       ref: master
   environment:
     name: python-env
-  namespace: admin
+    namespace: admin
