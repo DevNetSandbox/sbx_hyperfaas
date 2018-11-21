@@ -1,0 +1,9 @@
+{
+    "name": "process-image-metadata",
+    "version": "0.1.0",
+    "dependencies": {
+        "gm": "^1.23.1",
+        "minio": "^5.0.2",
+        "mongoose": "^5.0.18"
+    }
+}
