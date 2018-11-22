@@ -206,7 +206,7 @@ exports.processImageMetadata = async function (context) {
                         console.log('identify', err)
                     }
 
-                    var mongoDatabase = "image-metadata"
+                    var mongoDatabase = "image-processing"
                     var mongoUrl = 'mongodb://mongo-db.hyperfaas.svc.cluster.local/' + mongoDatabase;
                     insertData(mongoUrl, data);
                     minioClient.removeObject(bucketToCopy, newFileName, function (err) {
