@@ -1,4 +1,4 @@
-module.exports = async function (context) {
+exports.processImageMetadata = async function (context) {
     var gm = require('gm').subClass({ imageMagick: true });
     var Minio = require('minio')
     var mongoose = require('mongoose');

@@ -5,6 +5,8 @@ metadata:
   namespace: admin
 spec:
   poolsize: 1
+  builder:
+    image: cfnorg/node-build-env
   runtime:
-    image: cfnorg/node-env
-  version: 1
+    image: cfnorg/node-env:graphics
+  version: 2

@@ -9,5 +9,5 @@ spec:
     image: cfnorg/python-build-env
   poolsize: 1
   runtime:
-    image: cfnorg/python-env
+    image: cfnorg/python-env:graphics
   version: 2

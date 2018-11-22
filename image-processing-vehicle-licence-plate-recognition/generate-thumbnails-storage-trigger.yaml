@@ -1,0 +1,12 @@
+apiVersion: hyperfaas.io/v1
+kind: StorageTrigger
+metadata:
+  name: generate-thumbnails
+  namespace: admin
+spec:
+  functionref:
+    type: name
+    name: generate-thumbnails
+  storageType: minio
+  bucket: uploads
+  event: create
