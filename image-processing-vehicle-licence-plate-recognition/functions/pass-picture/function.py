@@ -49,10 +49,7 @@ def main():
             with io.open(filename, 'rb') as image_file:
                 content = image_file.read()
 
-            print("1" + image_file, file=sys.stderr)
-            print("2" + str(image_file), file=sys.stderr)
-            print("3" + content, file=sys.stderr)
-            print("4" + str(content), file=sys.stderr)
+            print(str(content), file=sys.stderr)  # REMOVE
             return str(content)
         else:
             return "No content", 204
