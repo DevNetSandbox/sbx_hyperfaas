@@ -48,7 +48,7 @@ def main():
 
             with io.open(filename, 'rb') as image_file:
                 # content = image_file.read()
-                files = {'file': image_file}
+                files = {'file': image_file.read()}
 
             print(str(files), file=sys.stderr)  # REMOVE
             return str(files)
