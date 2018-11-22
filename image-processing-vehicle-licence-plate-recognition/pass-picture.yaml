@@ -1,0 +1,37 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: pass-picture
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: python-env
+    namespace: admin
+  package:
+    functionName: "function.main"
+    packageref:
+      name: pass-picture-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: pass-picture-package
+  namespace: admin
+spec:
+  buildcmd: ./build.sh
+  source:
+    type: github
+    build: true
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "image-processing-vehicle-licence-plate-recognition/functions/pass-picture/"
+      ref: master
+  environment:
+    name: python-env
+    namespace: admin

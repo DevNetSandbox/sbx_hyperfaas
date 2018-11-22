@@ -1,0 +1,12 @@
+apiVersion: hyperfaas.io/v1
+kind: StorageTrigger
+metadata:
+  name: process-image-metadata
+  namespace: admin
+spec:
+  functionref:
+    type: name
+    name: process-image-metadata
+  storageType: minio
+  bucket: uploads
+  event: create

@@ -1,0 +1,37 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: process-image-metadata
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: node-env
+    namespace: admin
+  package:
+    functionName: "function.processImageMetadata"
+    packageref:
+      name: process-image-metadata-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: process-image-metadata-package
+  namespace: admin
+spec:
+  buildcmd: ./build.sh
+  source:
+    type: github
+    build: true
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "image-processing-vehicle-licence-plate-recognition/functions/process-image-metadata/"
+      ref: "master"
+  environment:
+    name: node-env
+    namespace: admin
