@@ -48,7 +48,7 @@ def main():
             with io.open(filename, 'rb') as image_file:
                 content = image_file.read()
 
-            app.logger.info(str(content))
+            print(str(content), file=sys.stderr)
             return str(content)
         else:
             return "No content", 204
