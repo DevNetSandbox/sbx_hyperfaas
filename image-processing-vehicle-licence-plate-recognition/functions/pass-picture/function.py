@@ -47,9 +47,10 @@ def main():
             my_object.download_file(filename)
 
             with io.open(filename, 'rb') as image_file:
-                content = image_file.read()
+                # content = image_file.read()
+                files = {'file': image_file}
 
-            print(str(content), file=sys.stderr)  # REMOVE
-            return str(content)
+            print(str(files), file=sys.stderr)  # REMOVE
+            return str(files)
         else:
             return "No content", 204
