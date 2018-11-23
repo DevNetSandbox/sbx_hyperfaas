@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
 	"net/http"
 
 	pb "./protocol"
@@ -26,18 +25,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	success(w, req.Image)
-	return
-
-
-
-	file, _, err := r.FormFile("image")
-	if err != nil {
-		handleError(w, err)
-		return
-	}
-	defer file.Close()
-
 	conn, err := grpc.Dial(recognitionServer, grpc.WithInsecure())
 
 	if err != nil {
@@ -48,8 +35,6 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	c := pb.NewRecognizerClient(conn)
 
-	imageBytes, err := ioutil.ReadAll(file)
-
 	if err != nil {
 		handleError(w, err)
 		return
@@ -58,7 +43,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	result, err := c.RecognizeImage(context.Background(), &pb.RecognitionRequest{
 		RequestID: "some-request-id",
-		Image:     imageBytes})
+		Image:     req.Image})
 
 	if err != nil {
 		handleError(w, err)
@@ -79,9 +64,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 func handleError(w http.ResponseWriter, err error) {
 	w.WriteHeader(http.StatusInternalServerError)
 	w.Write([]byte(err.Error()))
-}
-
-func success(w http.ResponseWriter, bts []byte) {
-	w.WriteHeader(http.StatusOK)
-	w.Write(bts)
 }
