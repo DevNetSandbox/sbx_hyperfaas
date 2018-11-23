@@ -57,7 +57,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		handleError(w, err)
 		return
 	}
-	
+
 	out := map[string]interface{}{}
 	json.Unmarshal([]byte(resultJSON), &out)
 
