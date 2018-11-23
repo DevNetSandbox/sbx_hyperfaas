@@ -2,6 +2,7 @@ import boto3
 import os
 import io
 import sys
+import base64
 
 from flask import request, Flask
 
@@ -47,10 +48,13 @@ def main():
             my_object.download_file(filename)
 
             with io.open(filename, 'rb') as image_file:
-                # content = image_file.read()
-                files = {'file': image_file.read()}
+                content = image_file.read()
 
-            print(str(files), file=sys.stderr)  # REMOVE
-            return str(files)
+            encoded = base64.b64encode(content).decode("utf-8")
+
+            json_response = {'image': encoded}
+
+            print(json_response, file=sys.stderr)  # REMOVE
+            return json_response
         else:
             return "No content", 204

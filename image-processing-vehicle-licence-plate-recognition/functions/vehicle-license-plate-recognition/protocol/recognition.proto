@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package recognition;
+
+service Recognizer {
+    rpc RecognizeImage (RecognitionRequest) returns (RecognitionResponse) {}
+}
+
+message RecognitionRequest {
+    string requestID = 1;
+    bytes image = 2;
+}
+
+message RecognitionResponse {
+    bool recognized = 1;
+    float confidence = 2;
+    string plate = 3;
+}
