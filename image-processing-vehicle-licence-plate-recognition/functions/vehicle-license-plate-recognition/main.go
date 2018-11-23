@@ -14,6 +14,7 @@ const (
 )
 
 type request struct {
+	Name string	`json:"name"`
 	Image []byte `json:"image"`
 }
 
@@ -56,9 +57,16 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		handleError(w, err)
 		return
 	}
+	
+	out := map[string]interface{}{}
+	json.Unmarshal([]byte(resultJSON), &out)
+
+	out["name"] = req.Name
+
+	outputJSON, _ := json.Marshal(out)
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write(resultJSON)
+	w.Write(outputJSON)
 }
 
 func handleError(w http.ResponseWriter, err error) {

@@ -1,0 +1,37 @@
+apiVersion: hyperfaas.io/v1
+kind: Function
+metadata:
+  name: vehicle-license-plate-recognition
+  namespace: admin
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+  environment:
+    name: go-env
+    namespace: admin
+  package:
+    functionName: "Handler"
+    packageref:
+      name: vehicle-license-plate-recognition-package
+      namespace: admin
+
+---
+apiVersion: hyperfaas.io/v1
+kind: Package
+metadata:
+  name: vehicle-license-plate-recognition-package
+  namespace: admin
+spec:
+  buildcmd: build
+  source:
+    type: github
+    build: true
+    github:
+      owner: DevNetSandbox
+      repo: sbx_hyperfaas
+      path: "image-processing-vehicle-licence-plate-recognition/functions/vehicle-license-plate-recognition"
+      ref: "master"
+  environment:
+    name: go-env
+    namespace: admin

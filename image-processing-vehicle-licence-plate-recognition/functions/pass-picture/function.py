@@ -52,9 +52,8 @@ def main():
 
             encoded = base64.b64encode(content).decode("utf-8")
 
-            json_response = {'image': encoded}
+            json_response = {'name': image_id, 'image': encoded}
 
-            print(json_response, file=sys.stderr)  # REMOVE
             return json_response
         else:
             return "No content", 204
