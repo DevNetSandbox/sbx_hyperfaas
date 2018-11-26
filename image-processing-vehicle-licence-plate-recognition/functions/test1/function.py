@@ -20,7 +20,7 @@ def main():
 
         if request.get_json():
             bucket = request.get_json()["Object"]["bucket"]
-
+            print("1 " + request.get_json(), file=sys.stderr)
             if not bucket:
                 return "No content", 204
 
@@ -53,7 +53,7 @@ def main():
             encoded = base64.b64encode(content).decode("utf-8")
 
             json_response = {'name': image_id, 'image': encoded}
-
+            print("1 " + json_response, file=sys.stderr)
             return json_response
         else:
             return "No content", 204
