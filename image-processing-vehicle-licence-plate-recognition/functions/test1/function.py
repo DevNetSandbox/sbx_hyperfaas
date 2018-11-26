@@ -53,7 +53,7 @@ def main():
             encoded = base64.b64encode(content).decode("utf-8")
 
             json_response = {'name': image_id, 'image': encoded}
-            print("1 " + json_response, file=sys.stderr)
+            print("2 " + str(json_response), file=sys.stderr)
             return json_response
         else:
             return "No content", 204
