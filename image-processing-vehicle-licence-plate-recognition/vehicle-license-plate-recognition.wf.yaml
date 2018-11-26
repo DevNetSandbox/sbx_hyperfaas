@@ -1,0 +1,29 @@
+apiVersion: hyperfaas.io/v1alpha1
+kind: Workflow
+metadata:
+  name: vehicle-license-plate-recognition
+  namespace: admin
+spec:
+  environment:
+    name: workflow-env
+    namespace: admin
+  wfDefinition:
+    output: PassResult
+    tasks:
+      PassPicture:
+        run: pass-picture
+        inputs:
+          default: "{$.Invocation.Inputs.default}"
+          headers: "{$.Invocation.Inputs.headers}"
+
+      VehicleLicensePlateRecognition:
+        run: vehicle-license-plate-recognition
+        inputs: "{$.Tasks.PassPicture.Output}"
+        requires:
+        - PassPicture
+
+      PassResult:
+        run: pass-result
+        inputs: "{$.Tasks.VehicleLicensePlateRecognition.Output}"
+        requires:
+        - VehicleLicensePlateRecognition

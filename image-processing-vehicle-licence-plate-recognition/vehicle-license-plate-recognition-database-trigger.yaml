@@ -1,0 +1,13 @@
+apiVersion: hyperfaas.io/v1
+kind: DatabaseTrigger
+metadata:
+  name: vehicle-license-plate-recognition
+  namespace: admin
+spec:
+  wfref:
+    type: name
+    name: vehicle-license-plate-recognition
+  databaseType: mongodb
+  databaseName: image-processing
+  dbCollection: images
+  dbOperation: all

@@ -1,0 +1,11 @@
+apiVersion: hyperfaas.io/v1
+kind: HTTPTrigger
+metadata:
+  name: fetch-results
+  namespace: admin
+spec:
+  functionref:
+    type: name
+    name: fetch-results
+  method: GET
+  relativeurl: /fetch-results
