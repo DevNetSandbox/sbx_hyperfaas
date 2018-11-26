@@ -20,7 +20,7 @@ def main():
 
         if request.get_json():
             bucket = request.get_json()["Object"]["bucket"]
-            print("1 " + request.get_json(), file=sys.stderr)
+            print("1 " + str(request.get_json()), file=sys.stderr)
             if not bucket:
                 return "No content", 204
 
