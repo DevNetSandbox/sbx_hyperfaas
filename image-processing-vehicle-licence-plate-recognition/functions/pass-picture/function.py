@@ -54,6 +54,6 @@ def main():
 
             json_response = {'name': image_id, 'image': encoded}
 
-            return json_response
+            return str(json_response)
         else:
             return "No content", 204
