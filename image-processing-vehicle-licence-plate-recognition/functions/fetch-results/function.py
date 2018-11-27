@@ -34,7 +34,7 @@ def main():
 
     return ("Recognized:" + json.dumps([{
         "ID": document['_id'],
-        "plate": document['plate'],
+        # "plate": document['plate'],
         "confidence": document['confidence'],
         "recognized": document['recognized']
     } for document in documents_cursor_recognized], indent=2))
