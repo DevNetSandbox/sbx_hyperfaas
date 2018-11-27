@@ -3,6 +3,7 @@ import os
 import io
 import sys
 import base64
+import json
 
 from flask import request, Flask, Response
 
@@ -54,6 +55,6 @@ def main():
 
             json_response = {'name': image_id, 'image': encoded}
 
-            return Response(str(json_response), 200, content_type="application/json")
+            return Response(json.dumps(json_response), 200, content_type="application/json")
         else:
             return "No content", 204
