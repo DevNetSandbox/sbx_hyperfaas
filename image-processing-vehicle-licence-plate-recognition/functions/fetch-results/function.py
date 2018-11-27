@@ -29,9 +29,7 @@ def main():
             "\nNot Recognized:\n" +
             json.dumps([{
                 "ID": document['_id'],
-                "plate": document['plate'],
-                "confidence": document['confidence'],
-                "recognized": document['recognized']
+                "plate": document['plate']
             } for document in documents_cursor_not_recognized], indent=2))
 
 
