@@ -1,5 +1,4 @@
 import pymongo
-import sys
 
 from flask import request, Flask
 
@@ -17,17 +16,14 @@ def main():
     if request.data:
         app.logger.info(request.get_json())
         if request.get_json():
-            plate = request.get_json()["plate"]
-
-            if not plate:
+            if "plate" not in request.get_json():
                 return "No content", 204
 
             mongo_url = "mongodb://{}".format(MONGODB_HOST)
 
             client = pymongo.MongoClient(mongo_url, MONGODB_PORT)
 
-            recognized = request.get_json()["recognized"]
-            if recognized:
+            if "recognized" in request.get_json():
                 collection = client[MONGODB_DATABASE][MONGODB_COLLECTION_RECOGNIZED]
                 insertion_object = {
                     "_id": request.get_json()["name"],
@@ -41,7 +37,7 @@ def main():
                     "_id": request.get_json()["name"],
                     "plate": request.get_json()["plate"]
                 }
-            print(str(insertion_object), file=sys.stderr)
+
             try:
                 insert_one = collection.insert_one(insertion_object)
                 return str(insertion_object)
