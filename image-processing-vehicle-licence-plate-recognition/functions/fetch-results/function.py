@@ -32,7 +32,7 @@ def main():
     #             "plate": document['plate']
     #         } for document in documents_cursor_not_recognized], indent=2))
 
-    return ("Recognized:\n" + json.dumps([{
+    return ("Recognized:" + json.dumps([{
         "ID": document['_id'],
         "plate": document['plate'],
         "confidence": document['confidence'],
