@@ -1,4 +1,5 @@
 import pymongo
+import sys
 
 from flask import request, Flask
 
@@ -40,7 +41,7 @@ def main():
                     "_id": request.get_json()["name"],
                     "plate": request.get_json()["plate"]
                 }
-
+            print(str(insertion_object), file=sys.stderr)
             try:
                 insert_one = collection.insert_one(insertion_object)
                 return str(insertion_object)
