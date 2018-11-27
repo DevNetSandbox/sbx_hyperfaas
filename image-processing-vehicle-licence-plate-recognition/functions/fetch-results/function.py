@@ -19,25 +19,17 @@ def main():
     documents_cursor_recognized = collection_recognized.find({})
     documents_cursor_not_recognized = collection_not_recognized.find({})
 
-    # return ("Recognized:\n" +
-    #         json.dumps([{
-    #             "ID": document['_id'],
-    #             "plate": document['plate'],
-    #             "confidence": document['confidence'],
-    #             "recognized": document['recognized']
-    #         } for document in documents_cursor_recognized], indent=2) +
-    #         "\nNot Recognized:\n" +
-    #         json.dumps([{
-    #             "ID": document['_id'],
-    #             "plate": document['plate']
-    #         } for document in documents_cursor_not_recognized], indent=2))
-
     return ("Recognized:\n" + json.dumps([{
         "ID": document['_id'],
         "plate": document['plate'],
         "confidence": document['confidence'],
         "recognized": document['recognized']
-    } for document in documents_cursor_recognized], indent=2))
+    } for document in documents_cursor_recognized], indent=2) +
+        "\nNot Recognized:\n" +
+        json.dumps([{
+            "ID": document['_id'],
+            "plate": document['plate']
+        } for document in documents_cursor_not_recognized], indent=2))
 
 
 if __name__ == '__main__':
