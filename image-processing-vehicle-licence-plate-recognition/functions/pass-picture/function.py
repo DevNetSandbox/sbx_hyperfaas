@@ -53,7 +53,7 @@ def main():
 
             encoded = base64.b64encode(content).decode("utf-8")
 
-            json_response = {'name': image_id, 'image': encoded}
+            json_response = {'name': image_object, 'image': encoded}
 
             return Response(json.dumps(json_response), 200, content_type="application/json")
         else:
