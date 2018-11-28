@@ -8,4 +8,4 @@ spec:
     type: name
     name: fetch-results
   method: GET
-  relativeurl: /fetch-results
+  relativeurl: /results

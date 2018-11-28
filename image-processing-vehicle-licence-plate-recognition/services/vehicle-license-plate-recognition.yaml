@@ -29,7 +29,7 @@ spec:
       - name: vehicle-license-plate-recognition
         image: cfnorg/carplate:0.2.0
         env:
-        - name: COUNTRY # Country code to identify (either us for USA or eu for Europe). Default=eu
+        - name: COUNTRY # Country code to identify (either us for USA or eu for Europe)
           value: us
         ports:
         - name: carplate-grpc
