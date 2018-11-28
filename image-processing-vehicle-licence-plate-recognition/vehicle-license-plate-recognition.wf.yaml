@@ -16,14 +16,14 @@ spec:
           default: "{$.Invocation.Inputs.default}"
           headers: "{$.Invocation.Inputs.headers}"
 
-      VehicleLicensePlateRecognition:
-        run: vehicle-license-plate-recognition
+      Recognize:
+        run: recognize
         inputs: "{$.Tasks.PassPicture.Output}"
         requires:
         - PassPicture
 
       PassResult:
         run: pass-result
-        inputs: "{$.Tasks.VehicleLicensePlateRecognition.Output}"
+        inputs: "{$.Tasks.Recognize.Output}"
         requires:
-        - VehicleLicensePlateRecognition
+        - Recognize

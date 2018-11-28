@@ -1,7 +1,7 @@
 apiVersion: hyperfaas.io/v1
 kind: Function
 metadata:
-  name: vehicle-license-plate-recognition
+  name: recognize
   namespace: admin
 spec:
   InvokeStrategy:
@@ -13,14 +13,14 @@ spec:
   package:
     functionName: "Handler"
     packageref:
-      name: vehicle-license-plate-recognition-package
+      name: recognize-package
       namespace: admin
 
 ---
 apiVersion: hyperfaas.io/v1
 kind: Package
 metadata:
-  name: vehicle-license-plate-recognition-package
+  name: recognize-package
   namespace: admin
 spec:
   buildcmd: build
@@ -30,7 +30,7 @@ spec:
     github:
       owner: DevNetSandbox
       repo: sbx_hyperfaas
-      path: "image-processing-vehicle-licence-plate-recognition/functions/vehicle-license-plate-recognition"
+      path: "image-processing-vehicle-licence-plate-recognition/functions/recognize"
       ref: "master"
   environment:
     name: go-env

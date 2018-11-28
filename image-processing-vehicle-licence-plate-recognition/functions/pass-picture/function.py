@@ -1,7 +1,5 @@
 import boto3
-import os
 import io
-import sys
 import base64
 import json
 
