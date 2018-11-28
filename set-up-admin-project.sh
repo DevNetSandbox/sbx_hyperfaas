@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+./hacks/check-components-start.sh
+
 set -x
 
 export HYPERFAAS_PROJECT_ID="admin"
